@@ -7,10 +7,11 @@ Based on
 * http://blogs.perl.org/users/graham_knop/2010/12/converting-complex-svn-repositories-to-git-part-4.html
 * https://github.com/haarg/convert-git-dbic/
 
-Padre SVN mirror
-* https://github.com/downloads/mj41/padre-svn-git/padre-mirror-r19164.tgz
 
-Read each scrip code before running them.
+HowTo
+
+Read each script code before running them. Will dowbload Padre SVN mirror 
+padre-mirror-r19164.tgz (93MB).
 
 Run only once:
 ./00-init.sh sure
@@ -18,3 +19,12 @@ Run only once:
 
 ToDo - not yet tested
 ./05-import.sh
+./10-update.sh
+...
+
+
+No warranty
+
+This package is provided with absolutely no warranty. As always,
+you should conduct an appropriate level of testing before using
+any new product in your production environment.
