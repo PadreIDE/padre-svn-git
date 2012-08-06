@@ -1,0 +1,1 @@
+File data/authors is based on http://svn.perlide.org/padre/subversion/users.txt
