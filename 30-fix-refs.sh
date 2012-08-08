@@ -4,7 +4,6 @@
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 GIT_BASE_DIR="$BASE_DIR/git-repo"
-
 cd $GIT_BASE_DIR || (echo "Can't chdir to $GIT_BASE_DIR" && exit )
 
 git update-ref -d master
@@ -13,13 +12,16 @@ git update-ref -d master
 git for-each-ref --format='%(refname)' refs/remotes/svn/tags/* | while read tag_ref; do
     tag=${tag_ref#refs/remotes/svn/tags/}
     tree=$( git rev-parse "$tag_ref": )
+	echo "tag $tag"
 
     # find the oldest ancestor for which the tree is the same
     parent_ref="$tag_ref";
-    while [ $( git rev-parse --quiet --verify "$parent_ref"^: ) = "$tree" ]; do
+    while [ "$( git rev-parse --quiet --verify "$parent_ref"^: )" = "$tree" ]; do
+        echo "  searching oldest ancestor: $tree, $parent_ref"
         parent_ref="$parent_ref"^
     done
     parent=$( git rev-parse "$parent_ref" );
+    echo "  parent found: $parent"
 
     # if this ancestor is in trunk then we can just tag it
     # otherwise the tag has diverged from trunk and it's actually more like a
@@ -28,7 +30,7 @@ git for-each-ref --format='%(refname)' refs/remotes/svn/tags/* | while read tag_
     if [ "$merge" = "$parent" ]; then
         target_ref=$parent
     else
-        echo "tag has diverged: $tag"
+        echo "  ! tag has diverged: $tag ($merge), $tag_ref"
         target_ref="$tag_ref"
     fi
 
@@ -38,9 +40,12 @@ git for-each-ref --format='%(refname)' refs/remotes/svn/tags/* | while read tag_
     env GIT_COMMITTER_NAME="$(  git show -s --pretty='format:%an' "$tag_ref" )" \
         GIT_COMMITTER_EMAIL="$( git show -s --pretty='format:%ae' "$tag_ref" )" \
         GIT_COMMITTER_DATE="$(  git show -s --pretty='format:%ad' "$tag_ref" )" \
-        git tag -a -F - "$tag" "$target_ref"
+        git tag -a -F - "$tag" "$target_ref" \
+	    && echo "  updated ref: $tag $target_ref"
 
+	echo "  deleting ref $tag_ref"
     git update-ref -d "$tag_ref"
+    echo ""
 done
 
 # create local branches out of svn branches
