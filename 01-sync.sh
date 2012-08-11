@@ -30,7 +30,7 @@ if [ "$1" = "slooow" ]; then
 fi
 
 if [ ! -f data-backup/$MIRROR_FNAME ]; then
-		curl http://cloud.github.com/downloads/mj41/padre-svn-git/$MIRROR_FNAME -o data-backup/$MIRROR_FNAME
+	curl http://cloud.github.com/downloads/mj41/padre-svn-git/$MIRROR_FNAME -o data-backup/$MIRROR_FNAME
 fi
 
 echo "Decompressing data-backup/$MIRROR_FNAME"

@@ -1,6 +1,14 @@
 #!/bin/bash
 
+# Inside data-backup
+GITTAR_FNAME="padre-git-r19164.tgz"
+
 BASE_DIR=$(cd $(dirname $0); pwd)
+
+if [ "$1" = "" ]; then
+	echo "Read script source code."
+	exit 1;
+fi
 
 if [ "$1" = "restore" ]; then
 	# Restore git-repo
@@ -11,7 +19,9 @@ if [ "$1" = "restore" ]; then
 	&& echo \
 	&& echo "Unpacking git-repo from backup file" \
 	&& cd git-repo \
-	&& tar -xzf $BASE_DIR/data-backup/git-repo.tgz -C $BASE_DIR/git-repo/ \
+	&& ( tar -xzf $BASE_DIR/data-backup/$GITTAR_FNAME -C $BASE_DIR/git-repo/ \
+	     || ( echo "Extract failed" && exit 1 ) \
+	   ) \
 	&& ls -alh \
 	&& cd $BASE_DIR \
 	&& echo "Unpack git-repo done" \
