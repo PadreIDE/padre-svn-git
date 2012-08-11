@@ -8,9 +8,8 @@ fi
 echo "Creating dirs"
 mkdir data-backup
 mkdir data-tmp
-mkdir git-repo
 
 echo "Deleting data"
-rm -rf data-tmp/
-rm -rf git-repo/
-rm -rf svn-mirror/
+rm -rf data-tmp/*
+rm -rf git-repo/*
+rm -rf svn-mirror/*

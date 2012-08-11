@@ -1,29 +1,55 @@
 padre-svn-git
 =============
 
-Scripts to migrate Padre IDE svn repository to git.
+Scripts to migrate Padre IDE Subversion repository to Git.
 
 Based on
 * http://blogs.perl.org/users/graham_knop/2010/12/converting-complex-svn-repositories-to-git-part-4.html
 * https://github.com/haarg/convert-git-dbic/
-
+* http://padre.perlide.org/trac/wiki/GitMigration
 
 HowTo
+=====
 
-Read each script code before running them. Will dowbload Padre SVN mirror 
-padre-mirror-r19164.tgz (93MB).
+See source code of each script before you try to run it.
 
-Run only once:
-./00-init.sh sure
-./01-sync.sh sure
+1) Use prepared archives
 
-ToDo - not yet tested
-./05-import.sh
+Run these only once.
+
+./00-init.sh
+./01-sync.sh archvie
+./05-import.sh archive
+
+These will download and unpack two archives (230 MB) from
+https://github.com/mj41/padre-svn-git/downloads
+
+2) Update and fix Git repository
+
+Get new SVN changes and update Git repo.
+
 ./10-update.sh
-...
 
+Run all scripts already prepared/tested for fixing Git repo
+
+./gitfix-all.sh run
+
+padre-svn-git development
+=========================
+
+See and use
+
+./gitfix-all.sh restore run
+
+to "rm -rf git-repo/", unpack data-backup/padre-git-r19164.tgz to get clean git
+repo and to apply all prepared fixups again.
+
+Prepare patch and send pull request on GitHub.
+
+Ping mj41 on Padre IRC channel.
 
 No warranty
+===========
 
 This package is provided with absolutely no warranty. As always,
 you should conduct an appropriate level of testing before using

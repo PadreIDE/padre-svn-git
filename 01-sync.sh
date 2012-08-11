@@ -1,10 +1,9 @@
 #!/bin/bash
 
 MIRROR_FNAME="padre-mirror-r19164.tgz"
-#MIRROR_FNAME="svn-mirror-r114.tgz"
 REP_SVN_URI="http://svn.perlide.org/padre/"
 
-if [ "$1" != "sure" -a "$1" != "slooow" ]; then
+if [ "$1" != "archive" -a "$1" != "slooow" ]; then
 	echo "Read source code before you run this."
 	exit;
 fi
