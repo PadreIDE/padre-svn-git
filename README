@@ -11,14 +11,18 @@ Based on
 HowTo
 =====
 
+cd ~/devel
+git clone git://github.com/mj41/padre-svn-git.git padre-svn-git
+cd padre-svn-git
+
 See source code of each script before you try to run it.
 
 1) Use prepared archives
 
 Run these only once.
 
-./00-init.sh
-./01-sync.sh archvie
+./00-init.sh sure
+./01-sync.sh archive
 ./05-import.sh archive
 
 These will download and unpack two archives (230 MB) from

@@ -3,6 +3,9 @@
 MIRROR_FNAME="padre-mirror-r19164.tgz"
 REP_SVN_URI="http://svn.perlide.org/padre/"
 
+BASE_DIR=$(cd $(dirname $0); pwd)
+
+
 if [ "$1" != "archive" -a "$1" != "slooow" ]; then
 	echo "Read source code before you run this."
 	exit;
@@ -20,10 +23,10 @@ if [ "$1" = "slooow" ]; then
 
 	# svn won't let us change revision properties without a hook in place
 	echo '#!/bin/sh' > svn-mirror/hooks/pre-revprop-change && chmod +x svn-mirror/hooks/pre-revprop-change
-	svnsync init file://$PWD/svn-mirror $REP_SVN_URI
+	svnsync init file://$BASE_DIR/svn-mirror $REP_SVN_URI
 
 	echo "Doing svn sync"
-	svnsync sync --non-interactive file://$PWD/svn-mirror
+	svnsync sync --non-interactive file://$BASE_DIR/svn-mirror
 
 	exit
 fi
