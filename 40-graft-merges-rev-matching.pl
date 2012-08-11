@@ -12,27 +12,35 @@ chdir( $GIT_REPO_DIR ) || die $!;
 
 chomp (my $GIT_DIR = `git rev-parse --git-dir`);
 
-my @merges = `git log --all --no-merges --format='%H' --grep='(orig r'`;
+my @merges = `git log --all --no-merges --format='%H' --grep='merge '`;
 chomp @merges;
 
-open my $fh, '>>', "$GIT_DIR/info/grafts";
+my $grafts_fpath = "$GIT_DIR/info/grafts";
+if ( $ARGV[0] eq 'rewrite' ) {
+	print "Rewriting $grafts_fpath\n";
+	system("echo > $grafts_fpath");
+}
+my $debug = ( $ARGV[1] eq 'debug' );
+
+open( my $fh, '>>', $grafts_fpath ) || die $!;
 print { $fh } "# Revision matching\n";
 for my $commit (@merges) {
     my $commit_data = `git cat-file commit $commit`;
-    my @matched = $commit_data =~ /^[ ]r\d+\@[^\n]+\(orig[ ]r(\d+)\)/msxg;
-    my ($parent_rev) = sort { $b <=> $a } @matched;
+    my ($parent_rev) = $commit_data =~ /^.*?\smerge\s(?:.*\s)?\-?[r\s]?\s*(?:\d+|HEAD)\:(\d+)\s.*\n/msx;
     unless ($parent_rev) {
-        @matched = $commit_data =~ /^[ ][ ]r\d+\@[^\n]+\(orig[ ]r(\d+)\)/msxg;
-        ($parent_rev) = sort { $b <=> $a } @matched;
-        unless ($parent_rev) {
-            @matched = $commit_data =~ /^[ ][ ][ ]r\d+\@[^\n]+\(orig[ ]r(\d+)\)/msxg;
-            ($parent_rev) = sort { $b <=> $a } @matched;
-            unless ($parent_rev) {
-                warn "odd commit $commit.  merge but wrong format\n";
-                next;
-            }
-        }
+		($parent_rev) = $commit_data =~ /^.*?\smerge[^\n]+\@(\d+)\s.*\n/msx;
+		unless ($parent_rev) {
+			my ( $line ) = $commit_data =~ /^.*?\s(merge\s[^\n]+)\n/msx;
+			unless ( $line ) {
+				warn "odd commit $commit has unparsed merge commit '$commit_data'\n";
+			} else {
+				warn "odd commit $commit has unparsed merge line '$line'\n";
+			}
+			next;
+		}
     }
+    print "--------------\nrev $parent_rev\n$commit_data\n---------------\n\n" if $debug;
+
     my $parent_commit = `git log --all --format='%H' -E --grep='git-svn-id: .*\@$parent_rev '`;
     chomp $parent_commit;
     my @parents = split /\n/, $parent_commit;
@@ -68,3 +76,4 @@ for my $commit (@merges) {
 }
 close $fh;
 
+system("cat $grafts_fpath");
