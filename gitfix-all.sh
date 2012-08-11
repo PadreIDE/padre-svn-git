@@ -13,9 +13,9 @@ fi
 if [ "$1" = "restore" ]; then
 	# Restore git-repo
 	cd $BASE_DIR \
-	&& ( mkdir git-repo || true ) \
 	&& echo "Removing old git-repo data" \
-	&& ( rm -rf git-repo/* || true ) \
+	&& ( rm -rf git-repo/ || true ) \
+	&& ( mkdir git-repo || true ) \
 	&& echo \
 	&& echo "Unpacking git-repo from backup file" \
 	&& cd git-repo \
