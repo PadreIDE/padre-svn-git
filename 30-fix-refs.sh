@@ -59,6 +59,3 @@ done
 git checkout trunk
 git branch -M trunk master
 
-# list possible merge commits to help create a grafts file
-# git log --pretty=one --all -E --grep='[mM]erge|\(orig r'
-
