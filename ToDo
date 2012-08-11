@@ -1,0 +1,9 @@
+Must have
+* remove empty commits
+* fix authors
+* fix "git-svn-id: file:///home/mj/..." in commit messages
+* find and fix merges
+
+Nice to have
+* rebase branches history
+* more tags for Plugin releases

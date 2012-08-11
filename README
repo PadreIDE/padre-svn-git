@@ -41,6 +41,9 @@ Run all scripts already prepared/tested for fixing Git repo
 padre-svn-git development
 =========================
 
+Please help me with items described in ToDo list file. Ping me (mj41) on Padre
+IRC channel.
+
 See and use
 
 ./gitfix-all.sh restore run
@@ -49,8 +52,6 @@ to "rm -rf git-repo/", unpack data-backup/padre-git-r19164.tgz to get clean git
 repo and to apply all prepared fixups again.
 
 Prepare patch and send pull request on GitHub.
-
-Ping mj41 on Padre IRC channel.
 
 No warranty
 ===========
