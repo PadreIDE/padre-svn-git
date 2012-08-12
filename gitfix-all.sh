@@ -54,5 +54,11 @@ if [ "$1" = "run" -o "$2" = "run" ]; then
 	&& echo "Running 50-delete-empty-branches.pl"     \
 	&& ./50-delete-empty-branches.pl                  \
 	&& echo                                           \
+	&& echo "Running 55-archive-deleted-branches.pl"  \
+	&& ./55-archive-deleted-branches.pl               \
+	&& echo                                           \
+	&& echo "Running ./60-delete-merged-branches.sh"  \
+	&& ./60-delete-merged-branches.sh                 \
+	&& echo                                           \
 	&& echo "gitfix all done"
 fi
