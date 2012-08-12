@@ -24,6 +24,7 @@ Run these only once.
 ./00-init.sh sure
 ./01-sync.sh archive
 ./05-import.sh archive
+./09-fix-svn-config.sh
 
 These will download and unpack two archives (230 MB) from
 https://github.com/mj41/padre-svn-git/downloads

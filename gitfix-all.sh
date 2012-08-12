@@ -30,6 +30,9 @@ fi
 
 if [ "$1" = "run" -o "$2" = "run" ]; then
 	echo "Starting cleanup scripts"                   \
+	&& echo "Running 09-fix-svn-config.sh"            \
+	&& ./09-fix-svn-config.sh                         \
+	&& echo                                           \
 	&& echo "Running 20-delete-non-branches.pl"       \
 	&& ./20-delete-non-branches.pl                    \
 	&& echo                                           \
