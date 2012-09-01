@@ -20,7 +20,7 @@ if (! @branches) {
 my $max_rev = `svn info file://$BASE_DIR/svn-mirror | grep Revision | cut -d' ' -f2`;
 chomp $max_rev;
 
-my $delbr_info_fpath = "$BASE_DIR/data/deleted-branches-info";
+my $delbr_info_fpath = "$BASE_DIR/data/deleted-branches-info.txt";
 open(my $delbr_info_fh, '>', $delbr_info_fpath ) || die $!;
 my @deleted = ();
 BRANCH: for my $branch (@branches) {
@@ -46,7 +46,7 @@ BRANCH: for my $branch (@branches) {
 }
 close $delbr_info_fh || die $!;
 
-my $delbr_fpath = "$BASE_DIR/data/deleted-branches";
+my $delbr_fpath = "$BASE_DIR/data/deleted-branches.txt";
 open(my $delbr_fh, '>', $delbr_fpath ) || die $!;
 print $delbr_fh join("\n", @deleted ) . "\n";
 close $delbr_fh || die $!;

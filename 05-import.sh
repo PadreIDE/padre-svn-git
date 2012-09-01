@@ -36,8 +36,8 @@ if [ "$1" = "slooow" ]; then
 		file://$BASE_DIR/svn-mirror \
 		2>&1 | tee $BASE_DIR/data-tmp/out-05-import.txt
 
-	git config svn.authorsfile $BASE_DIR/data/authors
-	git svn fetch --authors-prog=$BASE_DIR/author-generate
+	git config svn.authorsfile $BASE_DIR/data/authors.txt
+	git svn fetch --authors-prog=$BASE_DIR/author-generate.txt
 
 	exit
 fi

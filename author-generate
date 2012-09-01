@@ -8,7 +8,7 @@ my $BASE_DIR = dirname realpath __FILE__;
 
 my ($user) = @ARGV;
 
-my $author_file = $BASE_DIR . '/data/authors';
+my $author_file = $BASE_DIR . '/data/authors.txt';
 my $author = "$user <$user\@svngit.padre.perlide.org>";
 
 open my $fh, '>>', $author_file;

@@ -9,7 +9,7 @@ my $BASE_DIR = dirname realpath __FILE__;
 my $GIT_REPO_DIR =  $BASE_DIR.'/git-repo';
 chdir( $GIT_REPO_DIR ) || die $!;
 
-my $delbr_fpath = "$BASE_DIR/data/do-delete-empty-branches";
+my $delbr_fpath = "$BASE_DIR/data/do-delete-empty-branches.txt";
 exit unless -f $delbr_fpath;
 
 open(my $delbr_fh, '<', $delbr_fpath ) || die $!;
