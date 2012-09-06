@@ -37,7 +37,7 @@ if [ "$1" = "slooow" ]; then
 		2>&1 | tee $BASE_DIR/data-tmp/out-05-import.txt
 
 	git config svn.authorsfile $BASE_DIR/data/authors.txt
-	git svn fetch --authors-prog=$BASE_DIR/author-generate.txt
+	git svn fetch --authors-prog=$BASE_DIR/author-generate.sh
 
 	exit
 fi
