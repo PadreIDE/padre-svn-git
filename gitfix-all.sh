@@ -60,5 +60,17 @@ if [ "$1" = "run" -o "$2" = "run" ]; then
 	&& echo "Running ./60-delete-merged-branches.sh"  \
 	&& ./60-delete-merged-branches.sh                 \
 	&& echo                                           \
+	&& echo "Running ./81-remove-originals.sh"        \
+	&& ./81-remove-originals.sh                       \
+	&& echo                                           \
+	&& echo "Running ./82-remove-grafts.sh"           \
+	&& ./82-remove-grafts.sh                          \
+	&& echo                                           \
+	&& echo "Running ./85-wipe-svn.sh"                \
+	&& ./85-wipe-svn.sh                               \
+	&& echo                                           \
+	&& echo "Running ./90-purge.sh"                   \
+	&& ./90-purge.sh                                  \
+	&& echo                                           \
 	&& echo "gitfix all done"
 fi
