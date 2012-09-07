@@ -32,7 +32,7 @@ for my $sha (`git rev-list --all --date-order --timestamp | sort -n | awk '{prin
 		my $tag_str = 'sr' . $svnid . '-gn' . $num;
 
 		print "$sha, svn rev $svnid, $tag_str\n";
-		#system( "git tag -f $tag_str $sha 1>/dev/null" );
+		system( "git tag -f $tag_str $sha 1>/dev/null" );
 	}
 }
 
