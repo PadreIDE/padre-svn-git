@@ -20,6 +20,6 @@ for my $branch ( @branches ) {
 		|| system("git show $branch:Padre/lib/Padre.pm >/dev/null 2>/dev/null")
 	;
        
-    system "$BASE_DIR/kill-svn-branch $branch";
+    system "$BASE_DIR/kill-svn-branch.sh $branch";
 }
 

@@ -20,7 +20,7 @@ for my $branch (@branches) {
     my $result = `git log -E --grep='git-svn-id: .*\@$rev' $base_branch`;
     if ($result =~ /\S/) {
         # found rev in base branch, this one is useless
-        system "$BASE_DIR/kill-svn-branch $branch";
+        system "$BASE_DIR/kill-svn-branch.sh $branch";
     }
 }
 
