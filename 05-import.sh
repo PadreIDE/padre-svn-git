@@ -24,7 +24,7 @@ if [ "$1" = "slooow" ]; then
 	fi
 
 	mkdir $GIT_BASE_DIR
-	cd $GIT_BASE_DIR || (echo "Can't chdir to $GIT_BASE_DIR" && exit )
+	cd $GIT_BASE_DIR || exit 1
 
 	git init
 
