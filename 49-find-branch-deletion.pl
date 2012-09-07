@@ -13,7 +13,7 @@ chdir( $GIT_REPO_DIR ) || die $!;
 
 my @branches = @ARGV;
 if (! @branches) {
-    @branches = `$BASE_DIR/unresolved-branches`;
+    @branches = `$BASE_DIR/unresolved-branches.txt`;
     chomp @branches;
 }
 
