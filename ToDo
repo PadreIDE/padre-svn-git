@@ -1,8 +1,11 @@
 Must have
+* fix trunk vs. trunk/Padre duplications, r1746
 * remove empty commits
 * fix authors
 * fix "git-svn-id: file:///home/mj/..." in commit messages
 * find and fix merges
+* filter to separate repositories for Plugins
+* create Padre organization on GitHub
 
 Nice to have
 * rebase branches history
