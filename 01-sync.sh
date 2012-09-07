@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MIRROR_FNAME="padre-mirror-r19164.tgz"
+MIRROR_FNAME="padre-svn-r19448.tgz"
 REP_SVN_URI="http://svn.perlide.org/padre/"
 
 BASE_DIR=$(cd $(dirname $0); pwd)

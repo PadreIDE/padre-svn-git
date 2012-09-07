@@ -49,7 +49,7 @@ See and use
 
 ./gitfix-all.sh restore run
 
-to "rm -rf git-repo/", unpack data-backup/padre-git-r19164.tgz to get clean git
+to "rm -rf git-repo/", unpack data-backup/padre-git-r19448.tgz to get clean git
 repo and to apply all prepared fixups again.
 
 Prepare patch and send pull request on GitHub.
